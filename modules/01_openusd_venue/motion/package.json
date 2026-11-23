@@ -1,0 +1,32 @@
+{
+  "name": "openusd-venue-openmotion",
+  "version": "1.0.0",
+  "description": "Programmatic OpenMotion video composition showcasing Italian Venue OpenUSD stage hierarchy and variantSet transitions.",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "open-motion preview src/VenueShowcaseVideo.tsx",
+    "build": "tsc",
+    "render": "open-motion render src/VenueShowcaseVideo.tsx --output ../../../reports/videos/openusd_venue_openmotion.mp4 --fps 60 --width 1920 --height 1080"
+  },
+  "keywords": [
+    "openusd",
+    "open-motion",
+    "omniverse",
+    "motion-graphics",
+    "digital-twins",
+    "physical-ai"
+  ],
+  "author": "Antigravity Engineering",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@open-motion/core": "^0.4.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
+    "typescript": "^5.3.3"
+  }
+}

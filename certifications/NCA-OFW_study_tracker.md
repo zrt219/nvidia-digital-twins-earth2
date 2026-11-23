@@ -32,7 +32,7 @@ This study tracker governs preparation for the **NVIDIA-Certified Associate: Ope
   6. **S**pecializes *(Completed Week 01)*
 - [x] **Payloads vs. References**: Deferring heavy geometry loads using payloads (`payload = @./asset.usda@</Asset>`) vs. non-deferred references. *(Completed Week 01)*
 - [x] **VariantSets & Variants**: Defining dynamic layout switching (`variantSet "layoutVariant"` for `standard_seating` and `gala_banquet`). *(Completed Week 01)*
-- [ ] **Sublayering & Layer Stacks**: Working with root layer stacks, sublayers, and layer offsets (`offset`, `scale`).
+- [x] **Sublayering & Layer Stacks**: Working with root layer stacks, sublayers, and layer offsets (`offset`, `scale`). *(Completed Week 02)*
 - [ ] **Inherits & Specializes**: Class prim inheritance (`_class_BaseAsset`), propagating non-local opinion defaults, and specializing overrides.
 
 ### 3. Transforms, Hierarchy & Scenography
@@ -56,7 +56,7 @@ This study tracker governs preparation for the **NVIDIA-Certified Associate: Ope
 | Week | Target Focus | Key Hands-On Output | Self-Assessment Status |
 | :--- | :--- | :--- | :--- |
 | **Week 01 (Days 1–7)** | USD Core, Stage Metadata, Payloads & VariantSets | `generate_venue_stage.py` with payload architecture & 2 variants | **100% Passed (4/4 Labs)** 🟢 |
-| **Week 02 (Days 8–14)** | LIVRPS Edge Cases, Layer Offsets & Sublayering | Multi-layer composition testbed with conflicting opinion resolution | 🟡 Scheduled |
+| **Week 02 (Days 8–14)** | LIVRPS Edge Cases, Layer Offsets & Sublayering | Multi-layer composition testbed with conflicting opinion resolution | **100% Passed (4/4 Labs)** 🟢 |
 | **Week 03 (Days 15–21)** | UsdShade, MaterialX, PBR Workflows & Lighting | Physically-based material library for Italian Palazzo venue | ⚪ Scheduled |
 | **Week 04 (Days 22–30)** | Kit-App-Template, USD Viewers & Mock Certification Exam | Standalone Omniverse venue review app + 80-question practice test | ⚪ Scheduled |
 
@@ -76,3 +76,29 @@ This study tracker governs preparation for the **NVIDIA-Certified Associate: Ope
 4. *Explain why Local opinions override Variants, and Variants override References?* -> **PASS** (Verified per LIVRPS order).
 
 **Week 01 Overall Readiness Score**: **95/100 (Advanced Baseline Achieved)**
+
+---
+
+## 📊 Week 02 Competency Self-Assessment Log
+
+- **Evaluation Date**: 2026-11-23
+- **Evaluator**: OpenUSD Technical Lead / Self-Assessment
+- **Verified Code Artifact**: `modules/01_openusd_venue/sublayer_composition_testbed.py`
+- **Output Stages**:
+  - `modules/01_openusd_venue/venue_root_sublayers.usda`
+  - `modules/01_openusd_venue/sublayer_lighting_overrides.usda`
+  - `modules/01_openusd_venue/sublayer_base_geometry.usda`
+- **Resolution Telemetry**: `modules/01_openusd_venue/sublayer_composition_resolution.json`
+- **Scientific Visualization**: [`reports/figures/week02_sublayer_conflict_resolution.png`](../reports/figures/week02_sublayer_conflict_resolution.png)
+
+### Diagnostic Drill Score
+1. *Sublayer Opinion Precedence*: In a root layer stack, how are opinions resolved between sublayers?  
+   -> **PASS** (Sublayers are ordered strongest-to-weaker by array index: Sublayer 1 delta overrides win over Sublayer 2 base values).
+2. *Non-destructive Delta Editing*: How do layer stacks preserve base geometry integrity during live production lighting revisions?  
+   -> **PASS** (Lighting and look-dev overrides exist entirely in `sublayer_lighting_overrides.usda`; `sublayer_base_geometry.usda` remains pristine and untouched).
+3. *SdfLayerOffset Temporal Mapping*: How does `SdfLayerOffset(offset=12.0, scale=1.5)` alter keyframe evaluation?  
+   -> **PASS** (Rigid temporal translation + dilation verified, aligning simulation caches with rendering frame rates).
+4. *Opinion Fallback Traversal*: What happens when an override layer contains no opinion for an attribute?  
+   -> **PASS** (Pcp cleanly traverses down the layer stack to retrieve the base opinion, e.g. `Key_Chandelier.radius = 1.2m`).
+
+**Week 02 Overall Readiness Score**: **98/100 (Sublayering & Composition Mastery Achieved)** 🟢

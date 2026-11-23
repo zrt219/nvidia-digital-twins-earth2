@@ -1,0 +1,300 @@
+{
+  "token_specification_version": "1.0.0",
+  "cosmos_target_foundation": "NVIDIA_Cosmos_Physical_AI_Foundation_Suite",
+  "supported_models": [
+    "Cosmos-Diffusion-7B-PhysicalSim",
+    "Cosmos-Autoregressive-4B-StateAction"
+  ],
+  "physics_backend": "NVIDIA_Omniverse_PhysX_5_PBD",
+  "timestamp_utc": "2026-11-23T11:34:30.642049Z",
+  "coupling_metadata": {
+    "source_weather_model": "Adaptive Fourier Neural Operator (AFNO)",
+    "forecast_lead_time_hours": 24,
+    "meteorological_conditions": {
+      "venue_name": "Italian Historic Digital Twin Venue (Lamezia Coastal Plain)",
+      "latitude": 38.91,
+      "longitude": 16.24,
+      "wind_vector_m_s": {
+        "u": 9.79,
+        "v": 6.29,
+        "speed": 11.64,
+        "gust": 16.88,
+        "direction_deg": 237.3
+      },
+      "precipitation_mm_h": 6.68,
+      "flood_risk_category": "LOW",
+      "air_density_kg_m3": 1.225
+    },
+    "target_venue_stage": "/World/Venue"
+  },
+  "discrete_spatial_tokens": {
+    "description": "Quantized structural wind load pressure tokens mapped to OpenUSD mesh prims",
+    "count": 6,
+    "tokens": [
+      {
+        "token_id": "COSMOS_DISCRETE_WIND_PRIM_000",
+        "prim_path": "/World/Venue/Architecture/Perimeter_Structure/North_Wall",
+        "structural_role": "Load_Bearing_Perimeter_Wall",
+        "outer_normal": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "surface_area_m2": 480.0,
+        "centroid_xyz": [
+          0.0,
+          6.0,
+          -30.0
+        ],
+        "incident_pressure_coefficient_cp": 0.0,
+        "load_type": "LEEWARD_VORTEX_SUCTION",
+        "mean_dynamic_pressure_pa": 14.52,
+        "peak_gust_pressure_pa": 30.54,
+        "total_force_kn": 6.97,
+        "peak_gust_force_kn": 14.66,
+        "quantized_token_code": 1,
+        "structural_stress_ratio": 1e-05,
+        "structural_safety_factor": 114594.8,
+        "warning_level": "NOMINAL"
+      },
+      {
+        "token_id": "COSMOS_DISCRETE_WIND_PRIM_001",
+        "prim_path": "/World/Venue/Architecture/Perimeter_Structure/South_Wall",
+        "structural_role": "Load_Bearing_Perimeter_Wall",
+        "outer_normal": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "surface_area_m2": 480.0,
+        "centroid_xyz": [
+          0.0,
+          6.0,
+          30.0
+        ],
+        "incident_pressure_coefficient_cp": 0.541,
+        "load_type": "DIRECT_POSITIVE_PRESSURE",
+        "mean_dynamic_pressure_pa": 44.86,
+        "peak_gust_pressure_pa": 94.34,
+        "total_force_kn": 21.53,
+        "peak_gust_force_kn": 45.28,
+        "quantized_token_code": 5,
+        "structural_stress_ratio": 3e-05,
+        "structural_safety_factor": 37100.9,
+        "warning_level": "NOMINAL"
+      },
+      {
+        "token_id": "COSMOS_DISCRETE_WIND_PRIM_002",
+        "prim_path": "/World/Venue/Architecture/Perimeter_Structure/East_Colonnade",
+        "structural_role": "Porous_Aperture_Colonnade",
+        "outer_normal": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "surface_area_m2": 720.0,
+        "centroid_xyz": [
+          20.0,
+          6.0,
+          0.0
+        ],
+        "incident_pressure_coefficient_cp": 0.0,
+        "load_type": "LEEWARD_VORTEX_SUCTION",
+        "mean_dynamic_pressure_pa": 17.79,
+        "peak_gust_pressure_pa": 37.41,
+        "total_force_kn": 12.81,
+        "peak_gust_force_kn": 26.94,
+        "quantized_token_code": 2,
+        "structural_stress_ratio": 0.0,
+        "structural_safety_factor": 481100.5,
+        "warning_level": "NOMINAL"
+      },
+      {
+        "token_id": "COSMOS_DISCRETE_WIND_PRIM_003",
+        "prim_path": "/World/Venue/Architecture/Perimeter_Structure/West_Colonnade",
+        "structural_role": "Porous_Aperture_Colonnade",
+        "outer_normal": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "surface_area_m2": 720.0,
+        "centroid_xyz": [
+          -20.0,
+          6.0,
+          0.0
+        ],
+        "incident_pressure_coefficient_cp": 0.841,
+        "load_type": "DIRECT_POSITIVE_PRESSURE",
+        "mean_dynamic_pressure_pa": 54.11,
+        "peak_gust_pressure_pa": 113.79,
+        "total_force_kn": 38.96,
+        "peak_gust_force_kn": 81.93,
+        "quantized_token_code": 6,
+        "structural_stress_ratio": 1e-05,
+        "structural_safety_factor": 158181.5,
+        "warning_level": "NOMINAL"
+      },
+      {
+        "token_id": "COSMOS_DISCRETE_WIND_PRIM_004",
+        "prim_path": "/World/Venue/Architecture/Flooring/Terrazzo_Floor",
+        "structural_role": "Ground_Substrate_Boundary",
+        "outer_normal": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "surface_area_m2": 2400.0,
+        "centroid_xyz": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "incident_pressure_coefficient_cp": 0.0,
+        "load_type": "LEEWARD_VORTEX_SUCTION",
+        "mean_dynamic_pressure_pa": 14.52,
+        "peak_gust_pressure_pa": 30.54,
+        "total_force_kn": 34.85,
+        "peak_gust_force_kn": 73.3,
+        "quantized_token_code": 1,
+        "structural_stress_ratio": 0.0,
+        "structural_safety_factor": 327413.6,
+        "warning_level": "NOMINAL"
+      },
+      {
+        "token_id": "COSMOS_DISCRETE_WIND_PRIM_005",
+        "prim_path": "/World/Venue/Architecture/Ceiling_Vaults/Vaulted_Arch",
+        "structural_role": "Roof_Vaulting_Enclosure",
+        "outer_normal": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "surface_area_m2": 2760.0,
+        "centroid_xyz": [
+          0.0,
+          14.0,
+          0.0
+        ],
+        "incident_pressure_coefficient_cp": 0.0,
+        "load_type": "LEEWARD_VORTEX_SUCTION",
+        "mean_dynamic_pressure_pa": 14.52,
+        "peak_gust_pressure_pa": 30.54,
+        "total_force_kn": 40.08,
+        "peak_gust_force_kn": 84.29,
+        "quantized_token_code": 1,
+        "structural_stress_ratio": 1e-05,
+        "structural_safety_factor": 196448.2,
+        "warning_level": "NOMINAL"
+      }
+    ]
+  },
+  "continuous_physical_ingress_tokens": {
+    "description": "Continuous velocity vectors and PBD fluid parameters for PhysX 5 simulation",
+    "count": 3,
+    "tokens": [
+      {
+        "token_id": "COSMOS_CONTINUOUS_PBD_INGRESS_WEST_PORTAL_NORTH",
+        "portal_identifier": "INGRESS_WEST_PORTAL_NORTH",
+        "aperture_origin_xyz": [
+          -20.0,
+          0.05,
+          -15.0
+        ],
+        "continuous_velocity_vector_m_s": [
+          0.424,
+          -0.0212,
+          0.0636
+        ],
+        "flow_rate_m3_s": 0.002572,
+        "flow_rate_liters_s": 2.572,
+        "physx5_pbd_parameters": {
+          "solver_type": "PositionBasedDynamics_Fluid_PBD",
+          "particle_radius_m": 0.045,
+          "rest_density_kg_m3": 1000.0,
+          "dynamic_viscosity_pa_s": 0.001002,
+          "surface_tension_coeff_n_m": 0.0728,
+          "vorticity_confinement": 0.05,
+          "solid_boundary_friction": 0.2,
+          "continuous_contact_detection": true,
+          "pbd_substep_iterations": 6,
+          "damping": 0.01,
+          "particle_spawn_rate_per_second": 308
+        },
+        "hazard_depth_rate_mm_min": 0.064
+      },
+      {
+        "token_id": "COSMOS_CONTINUOUS_PBD_INGRESS_WEST_PORTAL_SOUTH",
+        "portal_identifier": "INGRESS_WEST_PORTAL_SOUTH",
+        "aperture_origin_xyz": [
+          -20.0,
+          0.05,
+          15.0
+        ],
+        "continuous_velocity_vector_m_s": [
+          0.4266,
+          -0.0213,
+          -0.0427
+        ],
+        "flow_rate_m3_s": 0.002939,
+        "flow_rate_liters_s": 2.939,
+        "physx5_pbd_parameters": {
+          "solver_type": "PositionBasedDynamics_Fluid_PBD",
+          "particle_radius_m": 0.045,
+          "rest_density_kg_m3": 1000.0,
+          "dynamic_viscosity_pa_s": 0.001002,
+          "surface_tension_coeff_n_m": 0.0728,
+          "vorticity_confinement": 0.05,
+          "solid_boundary_friction": 0.2,
+          "continuous_contact_detection": true,
+          "pbd_substep_iterations": 6,
+          "damping": 0.01,
+          "particle_spawn_rate_per_second": 352
+        },
+        "hazard_depth_rate_mm_min": 0.073
+      },
+      {
+        "token_id": "COSMOS_CONTINUOUS_PBD_INGRESS_EAST_PORTAL_CENTER",
+        "portal_identifier": "INGRESS_EAST_PORTAL_CENTER",
+        "aperture_origin_xyz": [
+          20.0,
+          0.05,
+          0.0
+        ],
+        "continuous_velocity_vector_m_s": [
+          -0.4287,
+          -0.0214,
+          0.0
+        ],
+        "flow_rate_m3_s": 0.001837,
+        "flow_rate_liters_s": 1.837,
+        "physx5_pbd_parameters": {
+          "solver_type": "PositionBasedDynamics_Fluid_PBD",
+          "particle_radius_m": 0.045,
+          "rest_density_kg_m3": 1000.0,
+          "dynamic_viscosity_pa_s": 0.001002,
+          "surface_tension_coeff_n_m": 0.0728,
+          "vorticity_confinement": 0.05,
+          "solid_boundary_friction": 0.2,
+          "continuous_contact_detection": true,
+          "pbd_substep_iterations": 6,
+          "damping": 0.01,
+          "particle_spawn_rate_per_second": 220
+        },
+        "hazard_depth_rate_mm_min": 0.046
+      }
+    ]
+  },
+  "token_tensor_shapes": {
+    "discrete_tokens_tensor": [
+      6,
+      12
+    ],
+    "continuous_tokens_tensor": [
+      3,
+      16
+    ],
+    "embedding_dimension": 768,
+    "precision": "fp16"
+  }
+}

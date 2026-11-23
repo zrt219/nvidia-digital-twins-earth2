@@ -1,0 +1,44 @@
+#usda 1.0
+(
+    metersPerUnit = 1.0
+    upAxis = "Y"
+    doc = "Stronger sublayer providing non-destructive delta overrides for venue illumination."
+)
+
+over "World"
+{
+    over "Venue"
+    {
+        over Scope "Lighting"
+        {
+            over SphereLight "Key_Chandelier"
+            {
+                color3f color = (0.35, 0.75, 1.0)
+                float exposure = 14.5
+                float intensity = 85000.0
+                float intensity.timeSamples = {
+                    0: 60000.0,
+                    10: 85000.0,
+                    20: 95000.0,
+                    30: 70000.0
+                }
+            }
+
+            over DomeLight "Ambient_Sky"
+            {
+                float intensity = 1800.0
+                color3f color = (0.85, 0.92, 1.0)
+            }
+
+            def RectLight "Stage_Fill"
+            {
+                float width = 4.0
+                float height = 2.0
+                float intensity = 12000.0
+                color3f color = (1.0, 1.0, 1.0)
+                double3 xformOp:translate = (0, 6.0, -12.0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+}

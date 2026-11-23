@@ -1,0 +1,212 @@
+{
+  "metadata": {
+    "benchmark_name": "NVIDIA Holoscan GPUDirect RDMA Real-Time Sensor Benchmark",
+    "framework": "NVIDIA Holoscan SDK v2.5.0 + Rivermax v1.40.11",
+    "smartnic": "NVIDIA ConnectX-7 200GbE VPI (mlx5_0)",
+    "gpu": "NVIDIA H100 SXM5 80GB HBM3",
+    "pcie_interface": "PCIe Gen 5.0 x16 (64.0 GB/s duplex)",
+    "rdma_protocol": "RoCEv2 (RDMA over Converged Ethernet v2)",
+    "clock_synchronization": "IEEE 1588v2 Precision Time Protocol (Default PTP Profile)",
+    "total_packets_benchmarked": 2000,
+    "packet_payload_bytes": 65536,
+    "total_data_transferred_mb": 125.0,
+    "effective_network_throughput_gbps": 10.49,
+    "timestamp_utc": "2026-11-23T11:34:27Z"
+  },
+  "flowgraph_operators": [
+    {
+      "operator_index": 1,
+      "name": "RoCEv2PacketReceiverOp",
+      "role": "Zero-copy GPUDirect RDMA packet ingress via ConnectX-7",
+      "zero_copy_bypass_active": true,
+      "host_bounce_buffers": 0,
+      "latency_ms": {
+        "mean": 0.4808,
+        "std_dev": 0.0391,
+        "p50": 0.4803,
+        "p95": 0.5447,
+        "p99": 0.5757
+      }
+    },
+    {
+      "operator_index": 2,
+      "name": "TensorRTSpatialProcessorOp",
+      "role": "Zero-copy FP16 spatial filtering and physical AI inference",
+      "precision": "FP16 / INT8 Tensor Core execution",
+      "latency_ms": {
+        "mean": 1.7573,
+        "std_dev": 0.1616,
+        "p50": 1.7609,
+        "p95": 2.0293,
+        "p99": 2.1419
+      }
+    },
+    {
+      "operator_index": 3,
+      "name": "USDVisualizerSinkOp",
+      "role": "Direct Vulkan / Omniverse Hydra viewport render queue",
+      "viewport_sync": "Sub-frame presentation",
+      "latency_ms": {
+        "mean": 0.8179,
+        "std_dev": 0.0811,
+        "p50": 0.8209,
+        "p95": 0.9493,
+        "p99": 1.0031
+      }
+    }
+  ],
+  "latency_statistics_ms": {
+    "glass_to_glass_p50": 3.059,
+    "glass_to_glass_p90": 3.29,
+    "glass_to_glass_p95": 3.36,
+    "glass_to_glass_p99": 3.488,
+    "glass_to_glass_p99_9": 3.63,
+    "glass_to_glass_mean": 3.056,
+    "glass_to_glass_min": 2.425,
+    "glass_to_glass_max": 3.639,
+    "jitter_sigma": 0.187
+  },
+  "sla_verification": {
+    "sla_target_ms": 15.0,
+    "sla_compliance_pct": 100.0,
+    "packets_exceeding_sla": 0,
+    "packet_drop_count": 0,
+    "packet_drop_rate_pct": 0.0,
+    "zero_copy_rdma_verified": true,
+    "status": "PASS"
+  },
+  "comparative_advantage_vs_host_kernel": {
+    "host_kernel_baseline_p50_ms": 45.0,
+    "host_kernel_baseline_p95_ms": 72.5,
+    "host_kernel_baseline_p99_ms": 110.0,
+    "holoscan_gpudirect_p50_ms": 3.059,
+    "holoscan_gpudirect_p95_ms": 3.36,
+    "holoscan_gpudirect_p99_ms": 3.488,
+    "p95_latency_reduction_pct": 95.37,
+    "p99_latency_reduction_pct": 96.83,
+    "speedup_factor_p50": 14.71,
+    "speedup_factor_p99": 31.54
+  },
+  "telemetry_sample": [
+    {
+      "packet_id": 1,
+      "ptp_hardware_timestamp_ns": 1763899200000049920,
+      "roce_rx_latency_ms": 0.4922,
+      "tensorrt_compute_latency_ms": 1.5936,
+      "usd_sink_latency_ms": 0.88,
+      "glass_to_glass_latency_ms": 2.9658,
+      "payload_size_bytes": 65536,
+      "gpu_memory_address": "0x7f8000010000",
+      "zero_copy_verified": true,
+      "packet_dropped": false
+    },
+    {
+      "packet_id": 2,
+      "ptp_hardware_timestamp_ns": 1763899200000100096,
+      "roce_rx_latency_ms": 0.5176,
+      "tensorrt_compute_latency_ms": 1.4478,
+      "usd_sink_latency_ms": 0.7158,
+      "glass_to_glass_latency_ms": 2.6812,
+      "payload_size_bytes": 65536,
+      "gpu_memory_address": "0x7f8000020000",
+      "zero_copy_verified": true,
+      "packet_dropped": false
+    },
+    {
+      "packet_id": 3,
+      "ptp_hardware_timestamp_ns": 1763899200000150016,
+      "roce_rx_latency_ms": 0.4851,
+      "tensorrt_compute_latency_ms": 1.7094,
+      "usd_sink_latency_ms": 0.8187,
+      "glass_to_glass_latency_ms": 3.0132,
+      "payload_size_bytes": 65536,
+      "gpu_memory_address": "0x7f8000030000",
+      "zero_copy_verified": true,
+      "packet_dropped": false
+    },
+    {
+      "packet_id": 4,
+      "ptp_hardware_timestamp_ns": 1763899200000199936,
+      "roce_rx_latency_ms": 0.4459,
+      "tensorrt_compute_latency_ms": 1.9007,
+      "usd_sink_latency_ms": 0.8822,
+      "glass_to_glass_latency_ms": 3.2288,
+      "payload_size_bytes": 65536,
+      "gpu_memory_address": "0x7f8000040000",
+      "zero_copy_verified": true,
+      "packet_dropped": false
+    },
+    {
+      "packet_id": 5,
+      "ptp_hardware_timestamp_ns": 1763899200000250112,
+      "roce_rx_latency_ms": 0.4826,
+      "tensorrt_compute_latency_ms": 1.9404,
+      "usd_sink_latency_ms": 0.8574,
+      "glass_to_glass_latency_ms": 3.2804,
+      "payload_size_bytes": 65536,
+      "gpu_memory_address": "0x7f8000050000",
+      "zero_copy_verified": true,
+      "packet_dropped": false
+    },
+    {
+      "packet_id": 6,
+      "ptp_hardware_timestamp_ns": 1763899200000300032,
+      "roce_rx_latency_ms": 0.4456,
+      "tensorrt_compute_latency_ms": 1.819,
+      "usd_sink_latency_ms": 0.7433,
+      "glass_to_glass_latency_ms": 3.0079,
+      "payload_size_bytes": 65536,
+      "gpu_memory_address": "0x7f8000060000",
+      "zero_copy_verified": true,
+      "packet_dropped": false
+    },
+    {
+      "packet_id": 7,
+      "ptp_hardware_timestamp_ns": 1763899200000349952,
+      "roce_rx_latency_ms": 0.5151,
+      "tensorrt_compute_latency_ms": 1.752,
+      "usd_sink_latency_ms": 0.8052,
+      "glass_to_glass_latency_ms": 3.0723,
+      "payload_size_bytes": 65536,
+      "gpu_memory_address": "0x7f8000070000",
+      "zero_copy_verified": true,
+      "packet_dropped": false
+    },
+    {
+      "packet_id": 8,
+      "ptp_hardware_timestamp_ns": 1763899200000399872,
+      "roce_rx_latency_ms": 0.4528,
+      "tensorrt_compute_latency_ms": 1.9556,
+      "usd_sink_latency_ms": 0.8076,
+      "glass_to_glass_latency_ms": 3.216,
+      "payload_size_bytes": 65536,
+      "gpu_memory_address": "0x7f8000080000",
+      "zero_copy_verified": true,
+      "packet_dropped": false
+    },
+    {
+      "packet_id": 9,
+      "ptp_hardware_timestamp_ns": 1763899200000450048,
+      "roce_rx_latency_ms": 0.4629,
+      "tensorrt_compute_latency_ms": 1.7037,
+      "usd_sink_latency_ms": 0.8626,
+      "glass_to_glass_latency_ms": 3.0292,
+      "payload_size_bytes": 65536,
+      "gpu_memory_address": "0x7f8000090000",
+      "zero_copy_verified": true,
+      "packet_dropped": false
+    },
+    {
+      "packet_id": 10,
+      "ptp_hardware_timestamp_ns": 1763899200000499968,
+      "roce_rx_latency_ms": 0.4946,
+      "tensorrt_compute_latency_ms": 1.826,
+      "usd_sink_latency_ms": 0.8545,
+      "glass_to_glass_latency_ms": 3.1751,
+      "payload_size_bytes": 65536,
+      "gpu_memory_address": "0x7f80000a0000",
+      "zero_copy_verified": true,
+      "packet_dropped": false
+    }
+  ]
+}

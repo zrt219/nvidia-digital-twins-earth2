@@ -1,0 +1,175 @@
+{
+  "layer_stack": [
+    {
+      "name": "venue_root_sublayers.usda",
+      "role": "Root Layer",
+      "rank": 1,
+      "offset": 0.0,
+      "scale": 1.0
+    },
+    {
+      "name": "sublayer_lighting_overrides.usda",
+      "role": "Sublayer 1 (Delta Overrides)",
+      "rank": 2,
+      "offset": 12.0,
+      "scale": 1.5
+    },
+    {
+      "name": "sublayer_base_geometry.usda",
+      "role": "Sublayer 2 (Base Geometry)",
+      "rank": 3,
+      "offset": 0.0,
+      "scale": 1.0
+    }
+  ],
+  "attributes": [
+    {
+      "prim": "/World/Venue/Lighting/Key_Chandelier",
+      "attribute": "intensity",
+      "unit": "lumens",
+      "opinions": {
+        "venue_root_sublayers.usda": null,
+        "sublayer_lighting_overrides.usda": 85000.0,
+        "sublayer_base_geometry.usda": 45000.0
+      },
+      "winning_layer": "sublayer_lighting_overrides.usda",
+      "winning_value": 85000.0,
+      "resolution_reason": "Sublayer 1 precedes Sublayer 2 in root subLayers array."
+    },
+    {
+      "prim": "/World/Venue/Lighting/Key_Chandelier",
+      "attribute": "color",
+      "unit": "RGB color3f",
+      "opinions": {
+        "venue_root_sublayers.usda": null,
+        "sublayer_lighting_overrides.usda": [
+          0.35,
+          0.75,
+          1.0
+        ],
+        "sublayer_base_geometry.usda": [
+          1.0,
+          0.95,
+          0.85
+        ]
+      },
+      "winning_layer": "sublayer_lighting_overrides.usda",
+      "winning_value": [
+        0.35,
+        0.75,
+        1.0
+      ],
+      "resolution_reason": "Delta override replaces warm baseline with cold blue event wash."
+    },
+    {
+      "prim": "/World/Venue/Lighting/Key_Chandelier",
+      "attribute": "exposure",
+      "unit": "EV",
+      "opinions": {
+        "venue_root_sublayers.usda": null,
+        "sublayer_lighting_overrides.usda": 14.5,
+        "sublayer_base_geometry.usda": 12.0
+      },
+      "winning_layer": "sublayer_lighting_overrides.usda",
+      "winning_value": 14.5,
+      "resolution_reason": "Delta override wins over base geometry."
+    },
+    {
+      "prim": "/World/Venue/Lighting/Key_Chandelier",
+      "attribute": "radius",
+      "unit": "meters",
+      "opinions": {
+        "venue_root_sublayers.usda": null,
+        "sublayer_lighting_overrides.usda": null,
+        "sublayer_base_geometry.usda": 1.2
+      },
+      "winning_layer": "sublayer_base_geometry.usda",
+      "winning_value": 1.2,
+      "resolution_reason": "Fallback to base geometry; delta layer authored no radius opinion."
+    },
+    {
+      "prim": "/World/Venue/Lighting/Ambient_Sky",
+      "attribute": "exposure",
+      "unit": "EV",
+      "opinions": {
+        "venue_root_sublayers.usda": 2.5,
+        "sublayer_lighting_overrides.usda": null,
+        "sublayer_base_geometry.usda": 1.0
+      },
+      "winning_layer": "venue_root_sublayers.usda",
+      "winning_value": 2.5,
+      "resolution_reason": "Root stage layer holds highest LIVRPS strength order over all sublayers."
+    },
+    {
+      "prim": "/World/Venue/Lighting/Ambient_Sky",
+      "attribute": "intensity",
+      "unit": "lumens",
+      "opinions": {
+        "venue_root_sublayers.usda": null,
+        "sublayer_lighting_overrides.usda": 1800.0,
+        "sublayer_base_geometry.usda": 800.0
+      },
+      "winning_layer": "sublayer_lighting_overrides.usda",
+      "winning_value": 1800.0,
+      "resolution_reason": "Sublayer 1 overrides Sublayer 2 baseline."
+    },
+    {
+      "prim": "/World/Venue/Lighting/Stage_Fill",
+      "attribute": "primDefinition",
+      "unit": "RectLight",
+      "opinions": {
+        "venue_root_sublayers.usda": null,
+        "sublayer_lighting_overrides.usda": "def RectLight 'Stage_Fill'",
+        "sublayer_base_geometry.usda": null
+      },
+      "winning_layer": "sublayer_lighting_overrides.usda",
+      "winning_value": "def RectLight 'Stage_Fill'",
+      "resolution_reason": "Non-destructive addition of new prim in department sublayer."
+    },
+    {
+      "prim": "/World/Venue/Structure/North_Wall",
+      "attribute": "primDefinition",
+      "unit": "Mesh",
+      "opinions": {
+        "venue_root_sublayers.usda": null,
+        "sublayer_lighting_overrides.usda": null,
+        "sublayer_base_geometry.usda": "def Mesh 'North_Wall'"
+      },
+      "winning_layer": "sublayer_base_geometry.usda",
+      "winning_value": "def Mesh 'North_Wall'",
+      "resolution_reason": "Base structural geometry inherited into composite stage."
+    }
+  ],
+  "layer_offset_demonstration": {
+    "layer": "sublayer_lighting_overrides.usda",
+    "offset_frames": 12.0,
+    "time_dilation_scale": 1.5,
+    "formula": "t_root = t_sub * scale + offset",
+    "keyframe_mapping": [
+      {
+        "sublayer_time": 0.0,
+        "root_stage_time": 12.0,
+        "evaluated_intensity": 60000.0,
+        "dilation_formula": "t_root = 0.0 * 1.5 + 12.0 = 12.0"
+      },
+      {
+        "sublayer_time": 10.0,
+        "root_stage_time": 27.0,
+        "evaluated_intensity": 85000.0,
+        "dilation_formula": "t_root = 10.0 * 1.5 + 12.0 = 27.0"
+      },
+      {
+        "sublayer_time": 20.0,
+        "root_stage_time": 42.0,
+        "evaluated_intensity": 95000.0,
+        "dilation_formula": "t_root = 20.0 * 1.5 + 12.0 = 42.0"
+      },
+      {
+        "sublayer_time": 30.0,
+        "root_stage_time": 57.0,
+        "evaluated_intensity": 70000.0,
+        "dilation_formula": "t_root = 30.0 * 1.5 + 12.0 = 57.0"
+      }
+    ]
+  }
+}

@@ -1,0 +1,104 @@
+#usda 1.0
+(
+    defaultPrim = "World"
+    metersPerUnit = 1.0
+    upAxis = "Y"
+    doc = "Baseline architectural geometry and baseline lighting definitions for Italian venue digital twin."
+)
+
+def Xform "World"
+{
+    def Xform "Venue" (
+        kind = "assembly"
+    )
+    {
+        def Scope "Structure"
+        {
+            def Mesh "North_Wall"
+            {
+                float3[] extent = [(-20, 0, -30), (20, 12, -30)]
+                int[] faceVertexCounts = [4]
+                int[] faceVertexIndices = [0, 1, 2, 3]
+                point3f[] points = [(-20, 0, -30), (20, 0, -30), (20, 12, -30), (-20, 12, -30)]
+                normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)]
+                uniform token subdivisionScheme = "none"
+                color3f[] primvars:displayColor = [(0.82, 0.78, 0.72)]
+            }
+
+            def Mesh "South_Wall"
+            {
+                float3[] extent = [(-20, 0, 30), (20, 12, 30)]
+                int[] faceVertexCounts = [4]
+                int[] faceVertexIndices = [0, 1, 2, 3]
+                point3f[] points = [(-20, 0, 30), (20, 0, 30), (20, 12, 30), (-20, 12, 30)]
+                normal3f[] normals = [(0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1)]
+                uniform token subdivisionScheme = "none"
+                color3f[] primvars:displayColor = [(0.82, 0.78, 0.72)]
+            }
+
+            def Mesh "East_Colonnade"
+            {
+                float3[] extent = [(20, 0, -30), (20, 12, 30)]
+                int[] faceVertexCounts = [4]
+                int[] faceVertexIndices = [0, 1, 2, 3]
+                point3f[] points = [(20, 0, -30), (20, 0, 30), (20, 12, 30), (20, 12, -30)]
+                normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0)]
+                uniform token subdivisionScheme = "none"
+                color3f[] primvars:displayColor = [(0.85, 0.81, 0.75)]
+            }
+
+            def Mesh "West_Colonnade"
+            {
+                float3[] extent = [(-20, 0, -30), (-20, 12, 30)]
+                int[] faceVertexCounts = [4]
+                int[] faceVertexIndices = [0, 1, 2, 3]
+                point3f[] points = [(-20, 0, -30), (-20, 0, 30), (-20, 12, 30), (-20, 12, -30)]
+                normal3f[] normals = [(1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0)]
+                uniform token subdivisionScheme = "none"
+                color3f[] primvars:displayColor = [(0.85, 0.81, 0.75)]
+            }
+        }
+
+        def Scope "Flooring"
+        {
+            def Mesh "Terrazzo_Floor"
+            {
+                float3[] extent = [(-20, 0, -30), (20, 0, 30)]
+                int[] faceVertexCounts = [4]
+                int[] faceVertexIndices = [0, 1, 2, 3]
+                point3f[] points = [(-20, 0, -30), (20, 0, -30), (20, 0, 30), (-20, 0, 30)]
+                normal3f[] normals = [(0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0)]
+                uniform token subdivisionScheme = "none"
+                color3f[] primvars:displayColor = [(0.45, 0.42, 0.38)]
+            }
+        }
+
+        def Scope "Lighting"
+        {
+            def SphereLight "Key_Chandelier"
+            {
+                float colorTemperature = 3000.0
+                bool enableColorTemperature = 1
+                color3f color = (1.0, 0.95, 0.85)
+                float exposure = 12.0
+                float intensity = 45000.0
+                float radius = 1.2
+                double3 xformOp:translate = (0, 10.5, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+                float intensity.timeSamples = {
+                    0: 40000.0,
+                    20: 45000.0,
+                    40: 50000.0,
+                    60: 45000.0
+                }
+            }
+
+            def DomeLight "Ambient_Sky"
+            {
+                float exposure = 1.0
+                float intensity = 800.0
+                color3f color = (0.75, 0.85, 1.0)
+            }
+        }
+    }
+}

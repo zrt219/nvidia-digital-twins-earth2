@@ -85,18 +85,22 @@ def generate_figure(output_dir="reports/figures"):
     axs[0].set_ylim(0, 0.95)
     axs[0].grid(True, linestyle=':', alpha=0.6)
 
-    axs[0].annotate(f'Host Memory Buffering\n(P50: {metrics["host_p50_ms"]}ms, P95: {metrics["host_p95_ms"]}ms)',
-                    xy=(15.0, 0.08), xytext=(17.5, 0.22),
-                    arrowprops=dict(arrowstyle='->', color='#c53030', lw=1.2, connectionstyle='arc3,rad=-0.1'),
-                    fontweight='bold', fontsize=8.8, color='#9b2c2c')
-
-    axs[0].annotate(f'GPUDirect RDMA (Holoscan)\n(P50: {metrics["gpudirect_p50_ms"]}ms, P99: {metrics["gpudirect_p99_ms"]}ms)',
-                    xy=(3.2, 0.78), xytext=(6.5, 0.82),
+    # Clean compact annotations with ample clearance from vertical SLA line (x=15)
+    axs[0].annotate(f'GPUDirect RDMA\n(Holoscan)\nP50: {metrics["gpudirect_p50_ms"]}ms | P99: {metrics["gpudirect_p99_ms"]}ms',
+                    xy=(3.2, 0.78), xytext=(5.0, 0.70),
                     arrowprops=dict(arrowstyle='->', color='#107c10', lw=1.2, connectionstyle='arc3,rad=-0.1'),
-                    fontweight='bold', fontsize=8.8, color='#107c10')
+                    fontweight='bold', fontsize=8.4, color='#107c10',
+                    bbox=dict(boxstyle='round,pad=0.3', facecolor='#f0fff4', edgecolor='#9ae6b4', alpha=0.95))
 
-    axs[0].annotate('Sub-15ms Real-Time SLA', xy=(15.0, 0.55), xytext=(15.8, 0.58),
-                    fontweight='bold', fontsize=8.2, color='#b91c1c')
+    axs[0].annotate(f'Host Memory Buffering\nP50: {metrics["host_p50_ms"]}ms | P95: {metrics["host_p95_ms"]}ms',
+                    xy=(15.0, 0.08), xytext=(18.5, 0.22),
+                    arrowprops=dict(arrowstyle='->', color='#c53030', lw=1.2, connectionstyle='arc3,rad=-0.1'),
+                    fontweight='bold', fontsize=8.4, color='#9b2c2c',
+                    bbox=dict(boxstyle='round,pad=0.3', facecolor='#fff5f5', edgecolor='#feb2b2', alpha=0.95))
+
+    axs[0].text(15.5, 0.88, 'Sub-15ms Real-Time SLA',
+                fontweight='bold', fontsize=8.2, color='#b91c1c',
+                bbox=dict(boxstyle='round,pad=0.25', facecolor='#fff5f5', edgecolor='#feb2b2', alpha=0.92))
 
     # Panel B: Temporal Jitter Spectrum (500 Consecutive Packets)
     trace_idx = np.arange(1, 501)
@@ -107,16 +111,21 @@ def generate_figure(output_dir="reports/figures"):
     axs[1].set_xlabel('Packet Sequence Number')
     axs[1].set_ylabel('Packet Latency (ms)')
     axs[1].set_xlim(1, 500)
-    axs[1].set_ylim(0, 42)
+    axs[1].set_ylim(0, 48)
     axs[1].grid(True, linestyle=':', alpha=0.6)
 
-    axs[1].annotate('Host OS & PCIe Jitter Spikes\n(Unpredictable scheduling delays)', xy=(210, host_lat[209]), xytext=(70, 32),
-                    arrowprops=dict(arrowstyle='->', color='#c53030', lw=1.2, connectionstyle='arc3,rad=-0.1'),
-                    fontweight='bold', fontsize=8.8, color='#9b2c2c')
+    # Place annotations on opposite ends with clear horizontal separation (>100 packets)
+    axs[1].annotate('Host OS Jitter Spikes\n(PCIe & scheduling delays)',
+                    xy=(210, host_lat[209]), xytext=(20, 36),
+                    arrowprops=dict(arrowstyle='->', color='#c53030', lw=1.2, connectionstyle='arc3,rad=-0.15'),
+                    fontweight='bold', fontsize=8.2, color='#9b2c2c',
+                    bbox=dict(boxstyle='round,pad=0.3', facecolor='#fff5f5', edgecolor='#feb2b2', alpha=0.95))
 
-    axs[1].annotate('GPUDirect Deterministic Stream\n(Jitter σ < 0.45ms)', xy=(340, rdma_lat[339]), xytext=(200, 10),
-                    arrowprops=dict(arrowstyle='->', color='#107c10', lw=1.2, connectionstyle='arc3,rad=-0.1'),
-                    fontweight='bold', fontsize=8.8, color='#107c10')
+    axs[1].annotate('GPUDirect Deterministic Stream\n(Sub-ms jitter: σ < 0.45ms)',
+                    xy=(390, rdma_lat[389]), xytext=(295, 36),
+                    arrowprops=dict(arrowstyle='->', color='#107c10', lw=1.2, connectionstyle='arc3,rad=0.15'),
+                    fontweight='bold', fontsize=8.2, color='#107c10',
+                    bbox=dict(boxstyle='round,pad=0.3', facecolor='#f0fff4', edgecolor='#9ae6b4', alpha=0.95))
 
     # Panel C: Percentile SLA Benchmark (P50, P95, P99, Max)
     categories = ['P50 (Median)', 'P95', 'P99', 'Max Latency']
@@ -146,12 +155,13 @@ def generate_figure(output_dir="reports/figures"):
         h = rect.get_height()
         axs[2].text(rect.get_x() + rect.get_width()/2.0, h + 1.0, f'{h:.1f}', ha='center', va='bottom', fontsize=8.5, color='#107c10', fontweight='bold')
 
-    axs[2].annotate('15ms Real-Time SLA Threshold', xy=(2.0, 15.0), xytext=(0.5, 17.5),
-                    fontweight='bold', fontsize=8.2, color='#b91c1c')
-
-    axs[2].text(0.05, 0.92, f'Host Buffering: {metrics["sla_compliance_host_pct"]}% SLA compliant\nGPUDirect RDMA: {metrics["sla_compliance_rdma_pct"]}% SLA compliant',
-                transform=axs[2].transAxes, fontsize=8.6, fontweight='bold',
-                bbox=dict(boxstyle='round,pad=0.4', facecolor='#f7fafc', edgecolor='#cbd5e0', alpha=0.9))
+    # Consolidated clean legend box in top-left to prevent any bar collisions
+    axs[2].text(0.04, 0.94,
+                f'Host Buffering: {metrics["sla_compliance_host_pct"]}% SLA compliant\n'
+                f'GPUDirect RDMA: {metrics["sla_compliance_rdma_pct"]}% SLA compliant\n'
+                f'--- 15ms Real-Time SLA Threshold',
+                transform=axs[2].transAxes, fontsize=8.3, fontweight='bold', va='top',
+                bbox=dict(boxstyle='round,pad=0.35', facecolor='#f7fafc', edgecolor='#cbd5e0', alpha=0.95))
 
     fig.suptitle('NVIDIA Holoscan Sensor Pipeline: GPUDirect RDMA vs Host Memory Latency Benchmark', fontweight='bold', y=0.98)
 

@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "experiment_id": "earth2-calabria-extreme-convective-01",
   "generator": "Earth2Studio_FourCastNet_AFNO_Pipeline",
-  "generated_at": "2026-11-23T11:34:30.634552Z",
+  "generated_at": "2026-11-23T22:20:58.322105Z",
   "model_metadata": {
     "framework": "earth2studio",
     "backbone": "Adaptive Fourier Neural Operator (AFNO)",

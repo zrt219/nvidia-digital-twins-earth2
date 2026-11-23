@@ -11,7 +11,7 @@
     "packet_payload_bytes": 65536,
     "total_data_transferred_mb": 125.0,
     "effective_network_throughput_gbps": 10.49,
-    "timestamp_utc": "2026-11-23T11:34:27Z"
+    "timestamp_utc": "2026-11-23T22:21:34Z"
   },
   "flowgraph_operators": [
     {

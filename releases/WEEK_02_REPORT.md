@@ -1,7 +1,7 @@
 # Weekly Proof-of-Work Report: Week 02
 
 - **Date**: 23 November 2026
-- **Release Version**: `v0.2.0`
+- **Release Version**: [`v0.2.0`](https://github.com/zrt219/nvidia-digital-twins-earth2/releases/tag/v0.2.0)
 - **Lead Focus**: OpenUSD Sublayering & Layer Offsets, Earth-2 Studio Convective Rollout, Cosmos Physical AI Tokenizer & Holoscan GPUDirect RDMA Flowgraph
 - **Primary Scientific Artifact**: [Figure 4: OpenUSD Sublayer Conflict Resolution & Delta Edit Benchmark](../reports/figures/week02_sublayer_conflict_resolution.png) ([Vector PDF](../reports/figures/week02_sublayer_conflict_resolution.pdf))
 - **Study Trackers**: [NCA-OFW Competency Tracker](../certifications/NCA-OFW_study_tracker.md) | [NCP-OUSD Study Tracker](../certifications/NCP-OUSD_study_tracker.md)

@@ -6,7 +6,7 @@
     "Cosmos-Autoregressive-4B-StateAction"
   ],
   "physics_backend": "NVIDIA_Omniverse_PhysX_5_PBD",
-  "timestamp_utc": "2026-11-23T11:34:30.642049Z",
+  "timestamp_utc": "2026-11-23T22:21:21.705426Z",
   "coupling_metadata": {
     "source_weather_model": "Adaptive Fourier Neural Operator (AFNO)",
     "forecast_lead_time_hours": 24,

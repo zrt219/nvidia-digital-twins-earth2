@@ -1,6 +1,6 @@
 # LinkedIn Technical Campaign Post: Week 02
 
-**Target Audience**: Engineering Directors, Simulation Leads, Geospatial Architects, Digital Twin Engineers, and Technical Recruiters at NVIDIA (Omniverse, Earth-2, Holoscan), Cesium, Esri, Tomorrow.io, Planet Labs, and Epic Games.
+**Target Audience**: Engineering Directors, Simulation Leads, Geospatial Architects, Digital Twin Engineers, and Technical Recruiters at NVIDIA (Omniverse, Earth-2, Holoscan), Cesium, Esri, Tomorrow.io, Planet Labs, Maxar Technologies, and Epic Games.
 
 ---
 
@@ -82,13 +82,14 @@ How do you pass weather vector fields into a 3D building model?
 ### 💼 For Engineering Leaders, Hiring Managers & Technical Recruiters
 I am actively engineering reproducible, production-grade solutions unifying **OpenUSD pipelines**, **scientific physical AI (Earth-2 / Cosmos)**, and **real-time edge streaming (Holoscan SDK)**.
 
-If your organization at **NVIDIA**, **Tomorrow.io**, **Cesium**, **Esri**, **Planet Labs**, or **Epic Games** is building real-time industrial digital twins, spatial AI infrastructure, or extreme weather resilience platforms, let's connect!
+If your organization at **NVIDIA**, **Tomorrow.io**, **Cesium**, **Esri**, **Planet Labs**, **Maxar Technologies**, or **Epic Games** is building real-time industrial digital twins, spatial AI infrastructure, or extreme weather resilience platforms, let's connect!
 
 Feedback, questions, and discussions are welcome in the comments or direct messages.
 
 ---
 
 ### 📂 Repository & Verified Artifacts
+- **GitHub Release Tag**: [Release v0.2.0](https://github.com/zrt219/nvidia-digital-twins-earth2/releases/tag/v0.2.0)
 - **Full Week 02 Technical Report**: [`releases/WEEK_02_REPORT.md`](../releases/WEEK_02_REPORT.md)
 - **Primary Scientific Visualization (Figure 4 PNG / Vector PDF)**:
   - Raster (300 DPI): [`reports/figures/week02_sublayer_conflict_resolution.png`](../reports/figures/week02_sublayer_conflict_resolution.png)

@@ -1,0 +1,87 @@
+#usda 1.0
+(
+    defaultPrim = "VenuePayload"
+    metersPerUnit = 1.0
+    upAxis = "Y"
+    doc = "Measured architectural geometry payload for historic Italian venue digital twin."
+)
+
+def Xform "VenuePayload" (
+    kind = "component"
+)
+{
+    def Scope "Perimeter_Structure"
+    {
+        def Mesh "North_Wall"
+        {
+            float3[] extent = [(-20, 0, -30), (20, 12, -30)]
+            int[] faceVertexCounts = [4]
+            int[] faceVertexIndices = [0, 1, 2, 3]
+            point3f[] points = [(-20, 0, -30), (20, 0, -30), (20, 12, -30), (-20, 12, -30)]
+            normal3f[] normals = [(0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)]
+            uniform token subdivisionScheme = "none"
+            color3f[] primvars:displayColor = [(0.82, 0.78, 0.72)]
+        }
+
+        def Mesh "South_Wall"
+        {
+            float3[] extent = [(-20, 0, 30), (20, 12, 30)]
+            int[] faceVertexCounts = [4]
+            int[] faceVertexIndices = [0, 1, 2, 3]
+            point3f[] points = [(-20, 0, 30), (20, 0, 30), (20, 12, 30), (-20, 12, 30)]
+            normal3f[] normals = [(0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1)]
+            uniform token subdivisionScheme = "none"
+            color3f[] primvars:displayColor = [(0.82, 0.78, 0.72)]
+        }
+
+        def Mesh "East_Colonnade"
+        {
+            float3[] extent = [(20, 0, -30), (20, 12, 30)]
+            int[] faceVertexCounts = [4]
+            int[] faceVertexIndices = [0, 1, 2, 3]
+            point3f[] points = [(20, 0, -30), (20, 0, 30), (20, 12, 30), (20, 12, -30)]
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0)]
+            uniform token subdivisionScheme = "none"
+            color3f[] primvars:displayColor = [(0.85, 0.81, 0.75)]
+        }
+
+        def Mesh "West_Colonnade"
+        {
+            float3[] extent = [(-20, 0, -30), (-20, 12, 30)]
+            int[] faceVertexCounts = [4]
+            int[] faceVertexIndices = [0, 1, 2, 3]
+            point3f[] points = [(-20, 0, -30), (-20, 0, 30), (-20, 12, 30), (-20, 12, -30)]
+            normal3f[] normals = [(1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0)]
+            uniform token subdivisionScheme = "none"
+            color3f[] primvars:displayColor = [(0.85, 0.81, 0.75)]
+        }
+    }
+
+    def Scope "Flooring"
+    {
+        def Mesh "Terrazzo_Floor"
+        {
+            float3[] extent = [(-20, 0, -30), (20, 0, 30)]
+            int[] faceVertexCounts = [4]
+            int[] faceVertexIndices = [0, 1, 2, 3]
+            point3f[] points = [(-20, 0, -30), (20, 0, -30), (20, 0, 30), (-20, 0, 30)]
+            normal3f[] normals = [(0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0)]
+            uniform token subdivisionScheme = "none"
+            color3f[] primvars:displayColor = [(0.45, 0.42, 0.38)]
+        }
+    }
+
+    def Scope "Ceiling_Vaults"
+    {
+        def Mesh "Vaulted_Arch"
+        {
+            float3[] extent = [(-20, 12, -30), (20, 16, 30)]
+            int[] faceVertexCounts = [4]
+            int[] faceVertexIndices = [0, 1, 2, 3]
+            point3f[] points = [(-20, 12, -30), (20, 12, -30), (20, 12, 30), (-20, 12, 30)]
+            normal3f[] normals = [(0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0)]
+            uniform token subdivisionScheme = "none"
+            color3f[] primvars:displayColor = [(0.90, 0.88, 0.85)]
+        }
+    }
+}

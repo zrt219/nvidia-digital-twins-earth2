@@ -1,0 +1,80 @@
+{
+  "experiment_id": "earth2-calabria-extreme-convective-01",
+  "name": "Earth-2 Calabria Convective Storm & Orographic Precipitation Benchmark",
+  "version": "1.0.0",
+  "created_at": "2026-11-23T00:00:00Z",
+  "domain": {
+    "name": "Calabria_Peninsula_Mesoscale",
+    "bounding_box": {
+      "latitude_min": 38.0,
+      "latitude_max": 40.2,
+      "longitude_min": 15.5,
+      "longitude_max": 17.5
+    },
+    "grid": {
+      "native_resolution_deg": 0.25,
+      "downscaled_resolution_deg": 0.05,
+      "coordinate_reference_system": "EPSG:4326"
+    },
+    "key_regions": [
+      {"name": "Aspromonte Massif", "lat": 38.17, "lon": 15.92, "elevation_m": 1955},
+      {"name": "Sila Plateau", "lat": 39.22, "lon": 16.58, "elevation_m": 1928},
+      {"name": "Pollino Ridge", "lat": 39.90, "lon": 16.18, "elevation_m": 2267},
+      {"name": "Lamezia Sounding Node", "lat": 38.91, "lon": 16.24, "elevation_m": 14}
+    ]
+  },
+  "temporal": {
+    "forecast_start_time": "2026-10-24T00:00:00Z",
+    "forecast_lead_time_hours": 72,
+    "timestep_interval_hours": 6,
+    "total_rollout_steps": 12
+  },
+  "model": {
+    "framework": "earth2studio",
+    "architecture": "FourCastNet_AFNO",
+    "backbone": "Adaptive Fourier Neural Operator (AFNO)",
+    "checkpoint": "ngc://models/nvidia/earth2/fourcastnet_v2:latest",
+    "spectral_modes": 32,
+    "patch_size": [4, 4],
+    "embedding_dim": 768,
+    "num_blocks": 12,
+    "precision": "bfloat16",
+    "input_channels": [
+      "u10m",
+      "v10m",
+      "t2m",
+      "msl",
+      "u850",
+      "v850",
+      "z500",
+      "q700",
+      "tcwv",
+      "tp"
+    ]
+  },
+  "ground_truth": {
+    "source": "ECMWF ERA5 Reanalysis",
+    "data_format": "Zarr / NetCDF4",
+    "temporal_resolution": "1 hour",
+    "spatial_resolution_deg": 0.25,
+    "local_validation_network": "Protezione Civile Calabria Telemetric Raingauge Network"
+  },
+  "benchmarking": {
+    "baseline_models": [
+      "NWP_Persistence",
+      "ECMWF_IFS_HRES"
+    ],
+    "metrics": {
+      "spatial_displacement_target_km": 15.0,
+      "domain_mae_target_mm_hr": 2.5,
+      "peak_precipitation_error_target_pct": 12.0,
+      "gpu_inference_latency_target_s": 0.30
+    },
+    "hardware_target": {
+      "accelerator": "NVIDIA RTX 6000 Ada / H100 SXM5",
+      "memory_gb": 48,
+      "cuda_version": "12.6",
+      "tensorrt_enabled": true
+    }
+  }
+}

@@ -1,0 +1,170 @@
+#usda 1.0
+(
+    defaultPrim = "World"
+    metersPerUnit = 1.0
+    upAxis = "Y"
+    doc = "Master OpenUSD Stage for Italian Historic Venue Digital Twin Showcase."
+)
+
+def Xform "World"
+{
+    def Xform "Venue" (
+        kind = "assembly"
+    )
+    {
+        def Xform "Architecture" (
+            payload = @./venue_architecture_payload.usda@</VenuePayload>
+        )
+        {
+            double3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Scope "Lighting"
+        {
+            def SphereLight "Key_Chandler"
+            {
+                float colorTemperature = 3200
+                bool enableColorTemperature = 1
+                float exposure = 12.5
+                float intensity = 50000.0
+                float radius = 1.2
+                double3 xformOp:translate = (0, 10.5, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def DomeLight "Ambient_Sky"
+            {
+                float exposure = 1.0
+                float intensity = 1000.0
+                color3f color = (0.95, 0.96, 1.0)
+            }
+        }
+
+        def Xform "Layout" (
+            hasVariants = true
+            variants = {
+                string layoutVariant = "standard_seating"
+            }
+            prepend variantSets = "layoutVariant"
+        )
+        {
+            variantSet "layoutVariant" = {
+                "standard_seating" {
+                    def Scope "Auditorium_Setup"
+                    {
+                        def Cube "Speaker_Podium"
+                        {
+                            double size = 1.0
+                            double3 xformOp:scale = (3.0, 0.4, 2.0)
+                            double3 xformOp:translate = (0, 0.2, -18)
+                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+                            color3f[] primvars:displayColor = [(0.2, 0.2, 0.2)]
+                        }
+
+                        def Cube "Lectern"
+                        {
+                            double size = 1.0
+                            double3 xformOp:scale = (0.8, 1.2, 0.6)
+                            double3 xformOp:translate = (0, 0.8, -17.5)
+                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+                            color3f[] primvars:displayColor = [(0.35, 0.22, 0.12)]
+                        }
+
+                        def Scope "Seating_Rows"
+                        {
+                            int rowCount = 10
+                            int seatsPerRow = 12
+                            int totalCapacity = 120
+                            string seatingType = "Ergonomic Conference Chairs"
+
+                            def Cube "Row_Cluster_Reference"
+                            {
+                                double size = 1.0
+                                double3 xformOp:scale = (16.0, 0.85, 18.0)
+                                double3 xformOp:translate = (0, 0.45, 0)
+                                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+                                color3f[] primvars:displayColor = [(0.15, 0.35, 0.65)]
+                            }
+                        }
+                    }
+                }
+                "gala_banquet" {
+                    def Scope "Banquet_Setup"
+                    {
+                        int tableCount = 12
+                        int seatsPerTable = 10
+                        int totalCapacity = 120
+                        string serviceType = "Formal Plated Dinner"
+
+                        def Scope "Dining_Tables"
+                        {
+                            def Cylinder "Banquet_Table_01"
+                            {
+                                double height = 0.75
+                                double radius = 1.1
+                                double3 xformOp:translate = (-8, 0.375, -10)
+                                uniform token[] xformOpOrder = ["xformOp:translate"]
+                                color3f[] primvars:displayColor = [(0.95, 0.95, 0.95)]
+                            }
+
+                            def Cylinder "Banquet_Table_02"
+                            {
+                                double height = 0.75
+                                double radius = 1.1
+                                double3 xformOp:translate = (0, 0.375, -10)
+                                uniform token[] xformOpOrder = ["xformOp:translate"]
+                                color3f[] primvars:displayColor = [(0.95, 0.95, 0.95)]
+                            }
+
+                            def Cylinder "Banquet_Table_03"
+                            {
+                                double height = 0.75
+                                double radius = 1.1
+                                double3 xformOp:translate = (8, 0.375, -10)
+                                uniform token[] xformOpOrder = ["xformOp:translate"]
+                                color3f[] primvars:displayColor = [(0.95, 0.95, 0.95)]
+                            }
+
+                            def Cylinder "Banquet_Table_04"
+                            {
+                                double height = 0.75
+                                double radius = 1.1
+                                double3 xformOp:translate = (-8, 0.375, 0)
+                                uniform token[] xformOpOrder = ["xformOp:translate"]
+                                color3f[] primvars:displayColor = [(0.95, 0.95, 0.95)]
+                            }
+
+                            def Cylinder "Banquet_Table_05"
+                            {
+                                double height = 0.75
+                                double radius = 1.1
+                                double3 xformOp:translate = (0, 0.375, 0)
+                                uniform token[] xformOpOrder = ["xformOp:translate"]
+                                color3f[] primvars:displayColor = [(0.95, 0.95, 0.95)]
+                            }
+
+                            def Cylinder "Banquet_Table_06"
+                            {
+                                double height = 0.75
+                                double radius = 1.1
+                                double3 xformOp:translate = (8, 0.375, 0)
+                                uniform token[] xformOpOrder = ["xformOp:translate"]
+                                color3f[] primvars:displayColor = [(0.95, 0.95, 0.95)]
+                            }
+                        }
+
+                        def Cube "Buffet_Station"
+                        {
+                            double size = 1.0
+                            double3 xformOp:scale = (12.0, 0.9, 1.8)
+                            double3 xformOp:translate = (0, 0.45, 18)
+                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+                            color3f[] primvars:displayColor = [(0.6, 0.45, 0.3)]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
